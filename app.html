@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📚 My Assignments - DeadlineIQ</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="app.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <a href="index.html" class="logo">
+                    <span class="logo-icon">📚</span>
+                    <span class="logo-text">DeadlineIQ</span>
+                </a>
+                <div class="nav-links">
+                    <button class="nav-btn" id="dashboardBtn" aria-label="Dashboard">
+                        <span>📊 Dashboard</span>
+                    </button>
+                    <button class="nav-btn" id="recommendationsBtn" aria-label="Recommendations">
+                        <span>📋 Recommendations</span>
+                    </button>
+                    <button class="nav-btn" id="timeBlocksBtn" aria-label="Time Blocks">
+                        <span>⏰ Time Blocks</span>
+                    </button>
+                    <button class="nav-btn" id="resetDemoBtn" aria-label="Reset Demo" onclick="resetDemo()">
+                        <span>🔄 Reset Demo</span>
+                    </button>
+                    <a href="index.html">← Back to Home</a>
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                </div>
+                <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main App Container -->
+    <main class="app-container">
+        <div class="app-layout">
+            <!-- Main Content Area -->
+            <div class="main-content">
+                <div class="container">
+                    <!-- Dashboard Header -->
+                    <div class="dashboard-header">
+                        <div class="header-content">
+                            <h1 class="dashboard-title">Your Assignments</h1>
+                            <p class="dashboard-subtitle">AI-powered priority ranking to help you focus on what matters most</p>
+                            <div class="progress-container">
+                                <div class="progress-bar-wrapper">
+                                    <div class="progress-bar-bg">
+                                        <div class="progress-bar-fill" id="progressBar"></div>
+                                    </div>
+                                    <div class="progress-text" id="progressText">0/0 completed (0%)</div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" id="addAssignmentBtn">
+                            <span>+ Add Assignment</span>
+                        </button>
+                    </div>
+
+                    <!-- Stats Summary -->
+            <div class="stats-summary" id="statsSummary">
+                <div class="stat-card critical clickable" onclick="filterByStatCard('critical')" title="Click to show only Critical assignments">
+                    <div class="stat-icon">🔥</div>
+                    <div class="stat-info">
+                        <div class="stat-value" id="criticalCount">0</div>
+                        <div class="stat-label">Critical</div>
+                    </div>
+                </div>
+                <div class="stat-card high clickable" onclick="filterByStatCard('high')" title="Click to show only High Priority assignments">
+                    <div class="stat-icon">⚠️</div>
+                    <div class="stat-info">
+                        <div class="stat-value" id="highCount">0</div>
+                        <div class="stat-label">High Priority</div>
+                    </div>
+                </div>
+                <div class="stat-card week clickable" onclick="filterByStatCard('medium')" title="Click to show only Medium Priority assignments">
+                    <div class="stat-icon">📅</div>
+                    <div class="stat-info">
+                        <div class="stat-value" id="weekCount">0</div>
+                        <div class="stat-label">Medium Priority</div>
+                    </div>
+                </div>
+                <div class="stat-card total clickable" onclick="filterByStatCard('all')" title="Click to show all assignments">
+                    <div class="stat-icon">📊</div>
+                    <div class="stat-info">
+                        <div class="stat-value" id="totalCount">0</div>
+                        <div class="stat-label">Total Assignments</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Assignments Grid -->
+            <div class="assignments-section">
+                <div class="section-header-row">
+                    <h2 class="section-heading" id="viewTitle">Prioritized Assignments</h2>
+                    <div class="search-filter-controls">
+                        <input type="text" id="searchInput" placeholder="🔍 Search assignments..." class="search-input" oninput="handleSearch(this.value)">
+                        <select id="filterSelect" class="filter-select" onchange="handleFilter(this.value)">
+                            <option value="all">All Priorities</option>
+                            <option value="critical">🔴 Critical</option>
+                            <option value="high">🟠 High</option>
+                            <option value="medium">🟡 Medium</option>
+                            <option value="low">🟢 Low</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="section-header-row">
+                    <div class="filter-tags" id="filterTags"></div>
+                    <div class="view-controls">
+                        <button class="view-btn" id="toggleCompletedBtn" onclick="toggleCompletedVisibility()">
+                            <span>👁️</span> Hide Completed
+                        </button>
+                        <button class="view-btn" data-view="priority" onclick="switchView('priority')">
+                            <span>🎯</span> Priority
+                        </button>
+                        <button class="view-btn" data-view="timeline" onclick="switchView('timeline')">
+                            <span>📋</span> Timeline
+                        </button>
+                        <button class="view-btn" data-view="calendar" onclick="switchView('calendar')">
+                            <span>📅</span> Calendar
+                        </button>
+                        <button class="view-btn" data-view="class" onclick="switchView('class')">
+                            <span>📚</span> By Class
+                        </button>
+                        <button class="view-btn" data-view="week" onclick="switchView('week')">
+                            <span>⏰</span> This Week
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Loading Skeleton -->
+                <div class="loading-container" id="loadingContainer">
+                    <div class="skeleton-card">
+                        <div class="skeleton-header">
+                            <div class="skeleton skeleton-badge"></div>
+                        </div>
+                        <div class="skeleton skeleton-title"></div>
+                        <div class="skeleton skeleton-text medium"></div>
+                        <div class="skeleton skeleton-text short"></div>
+                    </div>
+                    <div class="skeleton-card">
+                        <div class="skeleton-header">
+                            <div class="skeleton skeleton-badge"></div>
+                        </div>
+                        <div class="skeleton skeleton-title"></div>
+                        <div class="skeleton skeleton-text medium"></div>
+                        <div class="skeleton skeleton-text short"></div>
+                    </div>
+                    <div class="skeleton-card">
+                        <div class="skeleton-header">
+                            <div class="skeleton skeleton-badge"></div>
+                        </div>
+                        <div class="skeleton skeleton-title"></div>
+                        <div class="skeleton skeleton-text medium"></div>
+                        <div class="skeleton skeleton-text short"></div>
+                    </div>
+                </div>
+
+                <!-- Empty State -->
+                <div class="empty-state" id="emptyState">
+                    <div class="empty-icon">📚</div>
+                    <h3>No assignments yet</h3>
+                    <p>Click "Add Assignment" to get started and let our AI prioritize your work!</p>
+                    <button class="btn btn-primary" onclick="document.getElementById('addAssignmentBtn').click()">
+                        <span>+ Add Your First Assignment</span>
+                    </button>
+                </div>
+
+                <!-- Assignments List -->
+                <div class="assignments-grid" id="assignmentsGrid">
+                    <!-- Assignment cards will be dynamically inserted here -->
+                </div>
+            </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Dashboard Modal -->
+    <div class="modal-overlay" id="dashboardModal">
+        <div class="modal-container dashboard-modal">
+            <div class="modal-header">
+                <h2>📊 Analytics Dashboard</h2>
+                <button class="modal-close" id="dashboardClose" aria-label="Close">×</button>
+            </div>
+            <div class="modal-body dashboard-body">
+                <!-- Stress Level Indicator -->
+                <div class="dashboard-section stress-section">
+                    <h3 class="section-title">🎯 Current Stress Level</h3>
+                    <div class="stress-meter">
+                        <div class="stress-bar-container">
+                            <div class="stress-bar" id="stressBar"></div>
+                        </div>
+                        <div class="stress-info">
+                            <span class="stress-label" id="stressLabel">Low</span>
+                            <span class="stress-description" id="stressDescription">You're managing well!</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Priority Distribution Pie Chart -->
+                <div class="dashboard-section pie-section">
+                    <h3 class="section-title">📈 Priority Distribution</h3>
+                    <div class="pie-chart-container">
+                        <svg class="pie-chart" id="pieChart" viewBox="0 0 200 200">
+                            <circle class="pie-background" cx="100" cy="100" r="90"></circle>
+                        </svg>
+                        <div class="pie-legend" id="pieLegend"></div>
+                    </div>
+                </div>
+
+                <!-- Productivity Trend -->
+                <div class="dashboard-section productivity-section">
+                    <h3 class="section-title">📊 7-Day Completion Trend</h3>
+                    <div class="productivity-chart">
+                        <div class="chart-bars" id="productivityBars"></div>
+                        <div class="chart-labels">
+                            <span>Mon</span>
+                            <span>Tue</span>
+                            <span>Wed</span>
+                            <span>Thu</span>
+                            <span>Fri</span>
+                            <span>Sat</span>
+                            <span>Sun</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Time Stats -->
+                <div class="dashboard-section time-stats-section">
+                    <h3 class="section-title">⏱️ Time Investment</h3>
+                    <div class="time-stats-grid">
+                        <div class="time-stat-card">
+                            <div class="time-stat-icon">📝</div>
+                            <div class="time-stat-value" id="totalHoursEstimated">0</div>
+                            <div class="time-stat-label">Hours Estimated</div>
+                        </div>
+                        <div class="time-stat-card">
+                            <div class="time-stat-icon">✅</div>
+                            <div class="time-stat-value" id="hoursCompleted">0</div>
+                            <div class="time-stat-label">Hours Completed</div>
+                        </div>
+                        <div class="time-stat-card">
+                            <div class="time-stat-icon">⏰</div>
+                            <div class="time-stat-value" id="hoursRemaining">0</div>
+                            <div class="time-stat-label">Hours Remaining</div>
+                        </div>
+                        <div class="time-stat-card">
+                            <div class="time-stat-icon">🔥</div>
+                            <div class="time-stat-value" id="avgPriorityScore">0</div>
+                            <div class="time-stat-label">Avg Priority</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recommendations Modal -->
+    <div class="modal-overlay" id="recommendationsModal">
+        <div class="modal-container insights-modal">
+            <div class="modal-header">
+                <h2>📋 Today's Recommendations</h2>
+                <button class="modal-close" id="recommendationsClose" aria-label="Close">×</button>
+            </div>
+            <div class="modal-body single-insights-body">
+                <div class="insights-section">
+                    <div class="insights-header">
+                        <span style="font-size: 0.875rem; color: var(--text-secondary);">AI-powered priority suggestions</span>
+                        <button class="refresh-btn" onclick="generateRecommendations()" title="Refresh recommendations">
+                            🔄
+                        </button>
+                    </div>
+                    <div class="recommendations-list" id="recommendationsList">
+                        <!-- Recommendations will be inserted here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Time Blocks Modal -->
+    <div class="modal-overlay" id="timeBlocksModal">
+        <div class="modal-container insights-modal">
+            <div class="modal-header">
+                <h2>⏰ Suggested Time Blocks</h2>
+                <button class="modal-close" id="timeBlocksClose" aria-label="Close">×</button>
+            </div>
+            <div class="modal-body single-insights-body">
+                <div class="insights-section">
+                    <div class="insights-header">
+                        <span style="font-size: 0.875rem; color: var(--text-secondary);">Optimal study schedule</span>
+                        <button class="refresh-btn" onclick="generateTimeBlocks()" title="Refresh time blocks">
+                            🔄
+                        </button>
+                    </div>
+                    <div class="time-blocks-list" id="timeBlocksList">
+                        <!-- Time blocks will be inserted here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Assignment Modal -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2 id="modalTitle">Add New Assignment</h2>
+                <button class="modal-close" id="modalClose">&times;</button>
+            </div>
+            <form class="modal-form" id="assignmentForm">
+                <div class="form-grid">
+                    <div class="form-group full-width">
+                        <label for="assignmentName">
+                            Assignment Name <span class="required">*</span>
+                        </label>
+                        <input
+                            type="text"
+                            id="assignmentName"
+                            name="assignmentName"
+                            placeholder="e.g., Calculus Problem Set #7"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="className">
+                            Class Name <span class="required">*</span>
+                        </label>
+                        <input
+                            type="text"
+                            id="className"
+                            name="className"
+                            placeholder="e.g., MATH 265"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dueDate">
+                            Due Date <span class="required">*</span>
+                        </label>
+                        <input
+                            type="date"
+                            id="dueDate"
+                            name="dueDate"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dueTime">
+                            Due Time <span class="required">*</span>
+                        </label>
+                        <input
+                            type="time"
+                            id="dueTime"
+                            name="dueTime"
+                            required
+                        >
+                        <div class="time-presets">
+                            <button type="button" class="time-preset-btn" data-time="09:00">9 AM</button>
+                            <button type="button" class="time-preset-btn" data-time="12:00">12 PM</button>
+                            <button type="button" class="time-preset-btn" data-time="17:00">5 PM</button>
+                            <button type="button" class="time-preset-btn" data-time="23:59">11:59 PM</button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="gradeWeight">
+                            Grade Weight
+                        </label>
+                        <div class="slider-input-group">
+                            <input
+                                type="range"
+                                id="gradeWeight"
+                                name="gradeWeight"
+                                min="0"
+                                max="100"
+                                value="20"
+                                class="slider"
+                            >
+                            <div class="number-input-wrapper">
+                                <input
+                                    type="number"
+                                    id="gradeWeightNumber"
+                                    min="0"
+                                    max="100"
+                                    value="20"
+                                    class="slider-number-input"
+                                >
+                                <span class="input-suffix">%</span>
+                            </div>
+                        </div>
+                        <div class="slider-labels">
+                            <span>0%</span>
+                            <span>50%</span>
+                            <span>100%</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="estimatedHours">
+                            Estimated Hours <span class="required">*</span>
+                        </label>
+                        <input
+                            type="number"
+                            id="estimatedHours"
+                            name="estimatedHours"
+                            placeholder="e.g., 3"
+                            min="0.5"
+                            step="0.5"
+                            value="2"
+                            required
+                        >
+                        <div class="helper-text">How long will this take?</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="currentGrade">
+                            Current Grade in Class
+                        </label>
+                        <div class="slider-input-group">
+                            <input
+                                type="range"
+                                id="currentGrade"
+                                name="currentGrade"
+                                min="0"
+                                max="100"
+                                value="85"
+                                class="slider"
+                            >
+                            <div class="number-input-wrapper">
+                                <input
+                                    type="number"
+                                    id="currentGradeNumber"
+                                    min="0"
+                                    max="100"
+                                    value="85"
+                                    class="slider-number-input"
+                                >
+                                <span class="input-suffix">%</span>
+                            </div>
+                        </div>
+                        <div class="slider-labels">
+                            <span>F (0%)</span>
+                            <span>C (70%)</span>
+                            <span>A (90%)</span>
+                        </div>
+                        <div class="helper-text">Optional: Helps calculate risk level</div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="notes">
+                            Notes / Comments
+                        </label>
+                        <textarea
+                            id="notes"
+                            name="notes"
+                            placeholder="Add any notes, reminders, or comments about this assignment..."
+                            rows="4"
+                        ></textarea>
+                        <div class="helper-text">Optional: Add details about requirements, resources, or progress updates</div>
+                    </div>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelBtn">Cancel</button>
+                    <button type="submit" class="btn btn-primary">
+                        <span>Save Assignment</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Welcome Modal -->
+    <div class="modal-overlay active" id="welcomeModal">
+        <div class="modal-container welcome-modal">
+            <div class="welcome-header">
+                <div class="welcome-icon">🎉</div>
+                <h1 class="welcome-title">Welcome to <span class="gradient-text">DeadlineIQ</span></h1>
+                <p class="welcome-subtitle">Your AI-powered assignment deadline manager</p>
+            </div>
+
+            <div class="welcome-content">
+                <div class="welcome-features">
+                    <div class="welcome-feature">
+                        <div class="feature-icon-large">🤖</div>
+                        <h3>AI Priority Scoring</h3>
+                        <p>Smart algorithm analyzes urgency, importance, and feasibility to prioritize your work</p>
+                    </div>
+
+                    <div class="welcome-feature">
+                        <div class="feature-icon-large">📊</div>
+                        <h3>Multiple Views</h3>
+                        <p>See your assignments by priority, timeline, calendar, class, or weekly view</p>
+                    </div>
+
+                    <div class="welcome-feature">
+                        <div class="feature-icon-large">📋</div>
+                        <h3>Smart Recommendations</h3>
+                        <p>Get AI-powered suggestions on what to work on next with time block planning</p>
+                    </div>
+
+                    <div class="welcome-feature">
+                        <div class="feature-icon-large">🔔</div>
+                        <h3>Smart Notifications</h3>
+                        <p>Stay on track with intelligent deadline reminders</p>
+                    </div>
+                </div>
+
+                <div class="welcome-demo-option">
+                    <h3>Choose how to start:</h3>
+                    <div class="welcome-buttons">
+                        <button class="btn btn-primary" onclick="loadDemoData()">
+                            <span>🚀 Try Demo Mode</span>
+                        </button>
+                        <button class="btn btn-secondary" onclick="closeWelcomeModal()">
+                            <span>✨ Start Fresh</span>
+                        </button>
+                    </div>
+                    <p class="welcome-hint">💡 Demo mode loads sample assignments to explore features</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pomodoro Timer Widget -->
+    <div class="pomodoro-bubble" id="pomodoroBubble" onclick="togglePomodoro()">
+        <span class="timer-icon">⏰</span>
+    </div>
+
+    <div class="pomodoro-window" id="pomodoroWindow">
+        <div class="pomodoro-header">
+            <div class="pomodoro-header-info">
+                <span class="pomodoro-icon">⏰</span>
+                <div>
+                    <h3>Focus Timer</h3>
+                    <p class="pomodoro-status" id="pomodoroStatus">Ready to focus</p>
+                </div>
+            </div>
+            <button class="pomodoro-close" onclick="togglePomodoro()">×</button>
+        </div>
+
+        <div class="pomodoro-content">
+            <div class="timer-display" id="timerDisplay">25:00</div>
+
+            <div class="timer-mode-selector">
+                <button class="mode-btn active" data-mode="work" onclick="setTimerMode('work')">
+                    Work (25)
+                </button>
+                <button class="mode-btn" data-mode="short" onclick="setTimerMode('short')">
+                    Short (5)
+                </button>
+                <button class="mode-btn" data-mode="long" onclick="setTimerMode('long')">
+                    Long (15)
+                </button>
+            </div>
+
+            <div class="timer-controls">
+                <button class="timer-btn primary" id="timerToggle" onclick="toggleTimer()">
+                    <span>▶ Start</span>
+                </button>
+                <button class="timer-btn secondary" onclick="resetTimer()">
+                    <span>↻ Reset</span>
+                </button>
+            </div>
+
+            <div class="timer-assignment-link" id="timerAssignmentLink">
+                <p class="link-label">Working on:</p>
+                <select class="assignment-select" id="pomodoroAssignmentSelect">
+                    <option value="">Select assignment...</option>
+                </select>
+            </div>
+
+            <div class="timer-stats">
+                <div class="stat-item">
+                    <span class="stat-value" id="sessionsToday">0</span>
+                    <span class="stat-label">Today</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value" id="totalMinutes">0</span>
+                    <span class="stat-label">Minutes</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value" id="currentStreak">0</span>
+                    <span class="stat-label">Streak</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Chat Assistant -->
+    <div class="ai-chat-bubble" id="aiChatBubble" onclick="toggleAiChat()">
+        <span class="chat-icon">🤖</span>
+    </div>
+
+    <div class="ai-chat-window" id="aiChatWindow">
+        <div class="chat-header">
+            <div class="chat-header-info">
+                <span class="chat-avatar">🤖</span>
+                <div>
+                    <h3>DeadlineIQ Assistant</h3>
+                    <p class="chat-status">Online • Ready to help</p>
+                </div>
+            </div>
+            <button class="chat-close" onclick="toggleAiChat()">×</button>
+        </div>
+
+        <div class="chat-messages" id="chatMessages">
+            <div class="chat-message ai-message">
+                <div class="message-avatar">🤖</div>
+                <div class="message-content">
+                    <p>Hi! I'm your DeadlineIQ AI assistant. I can help you with:</p>
+                    <ul>
+                        <li>What to work on next</li>
+                        <li>Time management tips</li>
+                        <li>Assignment prioritization</li>
+                        <li>Study strategies</li>
+                    </ul>
+                    <p>Ask me anything!</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="chat-quick-actions">
+            <button class="quick-action-btn" onclick="askAI('What should I work on next?')">
+                📋 What's next?
+            </button>
+            <button class="quick-action-btn" onclick="askAI('How can I manage my time better?')">
+                ⏰ Time tips
+            </button>
+            <button class="quick-action-btn" onclick="askAI('Show me my progress')">
+                📊 My progress
+            </button>
+        </div>
+
+        <div class="chat-input-container">
+            <input
+                type="text"
+                class="chat-input"
+                id="chatInput"
+                placeholder="Ask me anything..."
+                onkeypress="if(event.key === 'Enter') sendChatMessage()"
+            />
+            <button class="chat-send-btn" onclick="sendChatMessage()">
+                <span>➤</span>
+            </button>
+        </div>
+    </div>
+
+
+    <!-- Footer -->
+    <footer class="app-footer">
+        <div class="container">
+            <p>&copy; 2024 DeadlineIQ. Smart deadline management for students.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

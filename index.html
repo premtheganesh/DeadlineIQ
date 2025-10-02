@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📚 Assignment Deadline Dashboard - Stay On Top of Your Work</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <span class="logo-icon">📚</span>
+                    <span class="logo-text">DeadlineIQ</span>
+                </div>
+                <div class="nav-links">
+                    <a href="#features">Features</a>
+                    <a href="#how-it-works">How It Works</a>
+                    <a href="#demo">Demo</a>
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                    <a href="app.html" class="cta-button">Get Started Free</a>
+                </div>
+                <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="hero-badge">
+                        <span>🚀 Smart Priority AI</span>
+                    </div>
+                    <h1 class="hero-title">
+                        Stop Stressing.<br>
+                        Start <span class="gradient-text">Prioritizing</span>.
+                    </h1>
+                    <p class="hero-description">
+                        Multiple classes. Chaotic deadlines. One smart dashboard that tells you exactly what to work on first. No more guessing, no more panic.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="app.html" class="btn btn-primary">
+                            <span>Try It Now - It's Free</span>
+                            <span class="btn-arrow">→</span>
+                        </a>
+                        <button class="btn btn-secondary">
+                            <span>Watch Demo</span>
+                            <span class="play-icon">▶</span>
+                        </button>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <div class="stat-number">10 sec</div>
+                            <div class="stat-label">To add assignment</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">0</div>
+                            <div class="stat-label">Setup required</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">Free forever</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="dashboard-preview">
+                        <div class="preview-header">
+                            <div class="preview-dots">
+                                <span></span><span></span><span></span>
+                            </div>
+                            <div class="preview-title">Your Assignments</div>
+                        </div>
+                        <div class="preview-stats">
+                            <span class="preview-badge critical">🔥 3 Critical</span>
+                            <span class="preview-badge">⚠️ 5 Due This Week</span>
+                        </div>
+                        <div class="preview-card card-critical">
+                            <div class="card-priority">🔴 CRITICAL - Due in 18 hours</div>
+                            <div class="card-title">Calc Problem Set #7</div>
+                            <div class="card-meta">MATH 265 • 20% of grade • 2h left</div>
+                            <div class="card-action">Start Working →</div>
+                        </div>
+                        <div class="preview-card card-high">
+                            <div class="card-priority">🟠 HIGH - Due in 2 days</div>
+                            <div class="card-title">Lab Report: Titration</div>
+                            <div class="card-meta">CHEM 101 • 15% • Est. 4 hours</div>
+                            <div class="card-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 60%"></div>
+                                </div>
+                                <span>60% done</span>
+                            </div>
+                        </div>
+                        <div class="preview-card card-medium">
+                            <div class="card-priority">🟡 MEDIUM - Due in 5 days</div>
+                            <div class="card-title">Essay Rough Draft</div>
+                            <div class="card-meta">ENG 102 • 5% • Est. 3 hours</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">The Problem Every Student Faces</h2>
+                <p class="section-description">You're juggling 4-6 classes. Everything feels urgent. What should you actually work on first?</p>
+            </div>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <div class="problem-icon">😰</div>
+                    <h3>Deadline Chaos</h3>
+                    <p>Multiple assignments due within days of each other. Which one matters most?</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">🤔</div>
+                    <h3>Bad Prioritization</h3>
+                    <p>Working chronologically ignores grade weight. A 5% essay shouldn't beat a 20% exam.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">😫</div>
+                    <h3>Burnout & Stress</h3>
+                    <p>Trying to perfect everything leads to all-nighters and diminishing returns.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Features That Actually Help</h2>
+                <p class="section-description">Not just another to-do list. Smart prioritization designed for students.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>Smart Priority Algorithm</h3>
+                    <p>Automatically calculates what matters most based on:</p>
+                    <ul>
+                        <li>⏰ Days until due (urgency)</li>
+                        <li>📊 Grade weight (importance)</li>
+                        <li>⏱️ Time needed (feasibility)</li>
+                        <li>📈 Current grade (risk level)</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👁️</div>
+                    <h3>Multiple View Modes</h3>
+                    <p>See your work the way you want:</p>
+                    <ul>
+                        <li>📋 Priority View (AI sorted)</li>
+                        <li>📅 Calendar View (timeline)</li>
+                        <li>📚 By Class (grouped)</li>
+                        <li>⏰ This Week (focus mode)</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Quick Add</h3>
+                    <p>Add assignments in seconds:</p>
+                    <ul>
+                        <li>Simple form, smart defaults</li>
+                        <li>Auto-suggest time estimates</li>
+                        <li>Autocomplete class names</li>
+                        <li>No friction, no hassle</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Visual Progress</h3>
+                    <p>Track your momentum:</p>
+                    <ul>
+                        <li>Not Started → In Progress → Done</li>
+                        <li>Weekly completion percentage</li>
+                        <li>Satisfying check animations</li>
+                        <li>Celebrate wins 🎉</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Time Block Suggestions</h3>
+                    <p>Realistic daily recommendations:</p>
+                    <ul>
+                        <li>"Work on Chemistry Lab today"</li>
+                        <li>"8 hours until next deadline"</li>
+                        <li>Smart scheduling guidance</li>
+                        <li>Prevent overcommitment</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌙</div>
+                    <h3>Dark Mode First</h3>
+                    <p>Built for late-night study sessions:</p>
+                    <ul>
+                        <li>Easy on the eyes</li>
+                        <li>Modern aesthetic</li>
+                        <li>Light mode available too</li>
+                        <li>Smooth animations throughout</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="how-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">How It Works</h2>
+                <p class="section-description">Three simple steps to stress-free deadline management</p>
+            </div>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Add Your Assignments</h3>
+                        <p>Enter assignment name, due date, grade weight, and time estimate. Takes 10 seconds per assignment.</p>
+                        <div class="step-visual">
+                            <div class="form-preview">
+                                <div class="form-field">Assignment: Calc Problem Set</div>
+                                <div class="form-field">Due: Monday 11:59 PM</div>
+                                <div class="form-field">Grade Weight: 20%</div>
+                                <div class="form-field">Time Needed: 2 hours</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>AI Prioritizes Everything</h3>
+                        <p>The algorithm instantly calculates what deserves your attention first. Color-coded badges make it obvious.</p>
+                        <div class="step-visual">
+                            <div class="priority-demo">
+                                <div class="priority-item critical">🔴 Critical Priority</div>
+                                <div class="priority-item high">🟠 High Priority</div>
+                                <div class="priority-item medium">🟡 Medium Priority</div>
+                                <div class="priority-item low">🟢 Low Priority</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Work & Track Progress</h3>
+                        <p>Follow the priority list. Mark tasks complete. Feel accomplished. Repeat.</p>
+                        <div class="step-visual">
+                            <div class="completion-demo">
+                                <div class="completion-item done">✅ Calc Problem Set</div>
+                                <div class="completion-item done">✅ Chemistry Lab</div>
+                                <div class="completion-item progress">⏳ Essay Draft</div>
+                                <div class="completion-stats">🎉 2/3 done this week!</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Why Students Love It</h2>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-stat">85%</div>
+                    <p>Less time deciding what to work on</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-stat">2x</div>
+                    <p>More high-value assignments completed on time</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-stat">10 sec</div>
+                    <p>Average time to add new assignment</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-stat">0</div>
+                    <p>Setup or configuration needed</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="demo-section">
+        <div class="container">
+            <div class="demo-content">
+                <div class="demo-text">
+                    <h2>See It In Action</h2>
+                    <p>Watch how DeadlineIQ transforms chaos into clarity in under 60 seconds.</p>
+                    <ul class="demo-features">
+                        <li>✨ Add 5 assignments in 30 seconds</li>
+                        <li>🤖 AI instantly prioritizes them</li>
+                        <li>📱 Works beautifully on mobile</li>
+                        <li>🎯 Know exactly what to do next</li>
+                    </ul>
+                    <button class="btn btn-primary">Watch Demo Video</button>
+                </div>
+                <div class="demo-video">
+                    <div class="video-placeholder">
+                        <div class="play-button">▶</div>
+                        <p>Demo Video</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Before/After Section -->
+    <section class="before-after-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>From Chaos to Clarity</h2>
+                <p>See how DeadlineIQ transforms your assignment management</p>
+            </div>
+            <div class="comparison-container">
+                <div class="comparison-side before-side">
+                    <div class="side-label">❌ Before DeadlineIQ</div>
+                    <div class="comparison-card">
+                        <div class="comparison-item negative">
+                            <span class="icon">😰</span>
+                            <span>Constantly stressed about forgetting deadlines</span>
+                        </div>
+                        <div class="comparison-item negative">
+                            <span class="icon">🤷</span>
+                            <span>No idea which assignment to start first</span>
+                        </div>
+                        <div class="comparison-item negative">
+                            <span class="icon">📝</span>
+                            <span>Scattered notes and calendar reminders</span>
+                        </div>
+                        <div class="comparison-item negative">
+                            <span class="icon">😴</span>
+                            <span>All-nighters before big due dates</span>
+                        </div>
+                        <div class="comparison-item negative">
+                            <span class="icon">📉</span>
+                            <span>Missing easy points on small assignments</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-divider">
+                    <span class="vs-badge">VS</span>
+                </div>
+                <div class="comparison-side after-side">
+                    <div class="side-label">✅ With DeadlineIQ</div>
+                    <div class="comparison-card">
+                        <div class="comparison-item positive">
+                            <span class="icon">😊</span>
+                            <span>Confident you know what's coming up</span>
+                        </div>
+                        <div class="comparison-item positive">
+                            <span class="icon">🎯</span>
+                            <span>AI tells you exactly what to work on</span>
+                        </div>
+                        <div class="comparison-item positive">
+                            <span class="icon">📊</span>
+                            <span>Everything in one smart dashboard</span>
+                        </div>
+                        <div class="comparison-item positive">
+                            <span class="icon">⏰</span>
+                            <span>Balanced schedule with study breaks</span>
+                        </div>
+                        <div class="comparison-item positive">
+                            <span class="icon">📈</span>
+                            <span>Never miss an assignment again</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Loved by Students</h2>
+                <p>See what your peers are saying about DeadlineIQ</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"This literally saved my GPA! I went from missing assignments to being ahead of schedule. The AI priority system is a game-changer."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">👨‍🎓</div>
+                        <div class="author-info">
+                            <div class="author-name">Alex M.</div>
+                            <div class="author-title">Computer Science, ASU</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"I used to spend 30 minutes every morning figuring out my priorities. Now it takes 10 seconds. More time studying, less time planning!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">👩‍🎓</div>
+                        <div class="author-info">
+                            <div class="author-name">Sarah K.</div>
+                            <div class="author-title">Biology Major, Junior</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"The stress level indicator is so accurate it's scary. Helps me know when to ask for extensions or focus extra hard. 10/10 recommend!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">👨‍💻</div>
+                        <div class="author-info">
+                            <div class="author-name">Jordan P.</div>
+                            <div class="author-title">Engineering, Sophomore</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"Finally, an app that actually understands how students think! The Pomodoro timer integration is perfect for my ADHD brain."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">👩‍🔬</div>
+                        <div class="author-info">
+                            <div class="author-name">Emily R.</div>
+                            <div class="author-title">Chemistry, Senior</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"As someone juggling 18 credits + a part-time job, this app is essential. The time blocking feature is absolutely brilliant!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">👨‍🏫</div>
+                        <div class="author-info">
+                            <div class="author-name">Marcus T.</div>
+                            <div class="author-title">Business Admin, Senior</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"Went from C's to A's after using this for one semester. The visual dashboard helps me stay accountable. Worth every... wait, it's FREE?!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">👩‍🎨</div>
+                        <div class="author-info">
+                            <div class="author-name">Priya S.</div>
+                            <div class="author-title">Psychology, Freshman</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Take Control?</h2>
+                <p>Join thousands of students who stopped stressing and started prioritizing.</p>
+                <div class="cta-buttons">
+                    <a href="app.html" class="btn btn-primary btn-large">
+                        <span>Get Started Free</span>
+                        <span class="btn-arrow">→</span>
+                    </a>
+                </div>
+                <p class="cta-note">No signup required • Works offline • Free forever</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <span class="logo-icon">📚</span>
+                        <span class="logo-text">DeadlineIQ</span>
+                    </div>
+                    <p>Smart deadline management for students.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Product</h4>
+                    <a href="#features">Features</a>
+                    <a href="#how-it-works">How It Works</a>
+                    <a href="#demo">Demo</a>
+                    <a href="#pricing">Pricing</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <a href="#about">About</a>
+                    <a href="#blog">Blog</a>
+                    <a href="#careers">Careers</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Resources</h4>
+                    <a href="#help">Help Center</a>
+                    <a href="#community">Community</a>
+                    <a href="#privacy">Privacy Policy</a>
+                    <a href="#terms">Terms of Service</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 DeadlineIQ. All rights reserved.</p>
+                <div class="footer-social">
+                    <a href="#twitter" aria-label="Twitter">𝕏</a>
+                    <a href="#github" aria-label="GitHub">GitHub</a>
+                    <a href="#linkedin" aria-label="LinkedIn">in</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
