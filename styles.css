@@ -955,6 +955,25 @@ body {
     color: var(--text-secondary);
 }
 
+
+.demo-video-player {
+    width: 100%;
+    border: 2px solid var(--border-color);
+    border-radius: 1.5rem;
+    background: var(--bg-tertiary);
+    aspect-ratio: 16/9;
+    display: block;
+    object-fit: cover;
+    box-shadow: var(--shadow-md);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.demo-video-player:hover {
+    transform: scale(1.02);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--accent-pink);
+}
+
 .video-placeholder {
     background: var(--bg-tertiary);
     border: 2px solid var(--border-color);
